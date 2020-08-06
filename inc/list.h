@@ -20,6 +20,13 @@ typedef struct _list
 void list_new(List *list, void *data);
 
 /**
+ * @brief Delete the list object.
+ * 
+ * @param list List reference.
+ */
+void list_delete(List *list);
+
+/**
  * @brief Get the list size from current head.
  * 
  * @param list List object.

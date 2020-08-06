@@ -4,7 +4,18 @@
 void list_new(List *list, void *data)
 {
     (*list) = (List)malloc(sizeof(List));
+    (*list)->next = NULL;
     (*list)->data = data;
+}
+
+void list_delete(List *list)
+{
+    if ((*list)->next)
+        list_delete(&((*list)->next));
+    free((*list)->data);
+    (*list)->data = NULL;
+    free((*list));
+    (*list) = NULL;
 }
 
 void list_size(List list, int *size)
@@ -51,7 +62,7 @@ void list_insert(List *tracer, int index, List insert)
     {
         tracer = &(*tracer)->next;
         index--;
-        if(!*tracer)
+        if (!*tracer)
             return;
     }
     if (!(*tracer))

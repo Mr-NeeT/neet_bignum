@@ -1,30 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
-
-void print_data(void *data) {
-    printf("%i\n", *(int*)data);
-}
-
-void *make_data(int num) {
-    void *data = malloc(sizeof(int));
-    *(int *)data = num;
-    return data;
-}
+#include "bigint.h"
 
 int main(void)
 {
-    List list = NULL;
-    list_new(&list, make_data(0));
-    for (int i = 1; i < 11; i++) {
-        list_push(list, make_data(i));
-    }
+    Bigint num, num2;
+    bigint_new(&num);
+    bigint_new(&num2);
 
-    List ins;
-    list_new(&ins, make_data(55));
-    list_insert(&list, 9, ins);
+    bigint_parse_hexstring(&num, "ffffffffffffffffffffffff");
+    bigint_copy(num, &num2);
 
-    list_print(list, print_data);
+    printf("Copy : \n");
+    bigint_print(num);
+    bigint_print(num2);
+    printf("\n\n");
+
+    printf("Add : \n");
+    bigint_add(num2, &num);
+    bigint_print(num);
+    bigint_print(num2);
+    printf("\n\n");
 
     return 0;
 }

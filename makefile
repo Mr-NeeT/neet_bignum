@@ -9,10 +9,10 @@ LDIR := lib
 
 LIBS := -lm
 
-_DEPS := list.h
+_DEPS := list.h bigint.h
 DEPS := $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ := main.o list.o 
+_OBJ := main.o list.o bigint.o
 OBJ := $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
